@@ -19,15 +19,8 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # set Docker username and password in Travis console
   - echo 'dockerhub credentials configured'
 
-
-
 install:
   - docker-compose -f udacity-deployment/docker/docker-compose-build.yaml build --parallel 
-  - docker-compose -f udacity-deployment/docker/docker-compose-build.yaml push
 
-script:
-  - kubectl get pods
-  - kubectl set image deployments/backend-feed backend-feed=zmarozas/udagram-feed:latest
-  - kubectl set image deployments/backend-user backend-user=zmarozas/udagram-user:latest
-  - kubectl set image deployments/frontend frontend=zmarozas/udagram-frontend:latest
-  - kubectl set image deployments/reverseproxy reverseproxy=zmarozas/reverseproxy:latest
+after_success:
+  - docker-compose -f udacity-deployment/docker/docker-compose-build.yaml push

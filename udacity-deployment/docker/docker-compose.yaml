@@ -21,7 +21,7 @@ services:
       AWS_PROFILE: $AWS_PROFILE 
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
-      URL: "http://localhost:8100"
+      URL: "http://addd5f7c5084146c8a26baac2d6ea06b-1815322002.us-east-1.elb.amazonaws.com:8100"
   backend-feed:
     image: zmarozas/udagram-feed
     volumes:
@@ -35,7 +35,7 @@ services:
       AWS_PROFILE: $AWS_PROFILE 
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
-      URL: "http://localhost:8100"
+      URL: "http://addd5f7c5084146c8a26baac2d6ea06b-1815322002.us-east-1.elb.amazonaws.com:8100"
   frontend:
     image: zmarozas/udagram-frontend
     ports:
